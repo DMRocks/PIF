@@ -1,0 +1,185 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    max-width: 900px;
+    border-radius: 30px;
+    margin: 1rem auto;
+    padding: 0.3rem 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+header .navbar-brand img {
+    margin-right: 0px;
+}
+
+header .navbar-nav .nav-link {
+    margin-right: 3rem;
+}
+
+header .btn-success {
+    border-radius: 100px;
+}
+
+
+.hero-section {
+    background: url('download.png') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #fff;
+    padding-top: 120px; 
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+.btn-outline-light {
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+}
+
+.sign-up-section {
+    background-color: #ff9900; 
+    padding: 1rem 0;
+    color: #000;
+}
+
+.sign-up-section .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-up-section .lead {
+    margin: 0;
+}
+
+.sign-up-section .btn {
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+}
+
+.about-us-section{
+    padding: 4rem 0;
+    background-color: #FFE5B4;
+}
+
+.impText{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-color: white; 
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.homepage {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    text-align: center;
+}
+.section-item {
+    margin: 10px;
+}
+
+.upcoming-workshops-section {
+    background-color: #fff;
+}
+
+.upcoming-workshops-section .card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upcoming-workshops-section .card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.upcoming-workshops-section .btn {
+    border-radius: 50px;
+}
+
+.faq-section {
+    background-color: #fdf8f3;
+}
+
+.faq-section .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section .card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.faq-section .btn-link {
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.faq-section .btn-link:hover {
+    text-decoration: none;
+}
+
+.footer {
+    background-color: #000;
+    color: white;
+}
+
+.footer ul {
+    padding: 0;
+    list-style: none;
+}
+
+.footer ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.footer .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5em;
+}
+
+.footer .social-icons a:hover {
+    color: #ddd;
+}
