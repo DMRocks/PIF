@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Workshop Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .section {
+            height: 150vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       
+   /*Section 1 stuff */
+        #section1 {
+            position: relative;
+            background: url('workshopimages/sectionOneBg.jpg') no-repeat center center;
+            background-size: cover;
+            height: 150vh;
+            overflow: hidden;}
+
+        #section1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            filter: blur(5px);  }
+           
+            /*Hollow text stuff */
+            .text-with-image {
+            font-size: 8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: absolute;
+            z-index: 1;
+            color: transparent;
+            -webkit-text-stroke:-1px -1px 0 #fff,;
+            white-space: nowrap;
+            transition: transform 0.5s ease-out;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(-100%);
+        }
+
+        .text-with-image::before {
+            content: 'WORKSHOPS';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('workshopimages/galleryOne.jpg') no-repeat center center;
+            background-size: cover;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            z-index: -1;
+        }
+
+             /*Navigation Bar stuff */
+       
+        .navbar {
+            max-width: 900px;
+            border-radius: 30px;
+            margin: 1rem auto;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+
+        }
+        .navbar.fade-out {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-100%);
+            pointer-events: none;
+        }
+        header .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        header .navbar-nav .nav-link {
+            margin-right: 1rem;
+        }
+            
+
+
+   
+   
+        /*Section 2 stuff */
+        #section2 {
+            position: relative;
+            height: 150vh;
+            overflow: hidden;
+            background: none;
+        }
+
+        .gallery-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .gallery-image.active {
+            opacity: 1;
+        }
+
+        .dot-navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(128, 128, 128, 0.7);
+            border-radius: 15px;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            margin: 0 5px;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .dot.active {
+            opacity: 1;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .parallax-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .parallax-content h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .arrow {
+            width: 40px;
+            height: 40px;
+            border: solid white;
+            border-width: 0 4px 4px 0;
+            display: inline-block;
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) rotate(45deg);
+            }
+            40% {
+                transform: translateY(-30px) rotate(45deg);
+            }
+            60% {
+                transform: translateY(-15px) rotate(45deg);
+            }
+        }
+
+
+
+/*Section 3 stuff */
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #28a745;
+}
+
+#section3 {
+    padding-top: 3rem;
+    height: 75vh;
+}
+
+.workshop-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .workshop-container {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+        .workshop-card {
+            flex: 0 0 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .card-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-content img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card-date {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .card-description {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .btn-register {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-register:hover {
+            background-color: #45a049;
+        }
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .prev-btn {
+            left: 10px;
+        }
+        .next-btn {
+            right: 10px;
+        }
+        .workshop-carousel:hover .nav-btn {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .workshop-card {
+                flex: 0 0 50%;
+            }
+        }
+        @media (min-width: 992px) {
+            .workshop-card {
+                flex: 0 0 33.333%;
+            }
+        }
+        @media (min-width: 1200px) {
+            .workshop-card {
+                flex: 0 0 25%;
+            }
+        }
+
+
+
+
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div id="section1" class="section">
+        <nav id= "mainNavbar" class="navbar navbar-expand-lg navbar-light bg-light rounded-nav">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="PayForward" width="30" height="30" class="d-inline-block align-top">
+                    Pay It Forward
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="main.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="About.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="workshop.html">Workshops</a></li>
+                        <li class="nav-item"><a class="nav-link" href="kits.html">Kits</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="btn btn-success ml-lg-3">Join Now</a>
+            </div>
+        </nav>
+       
+        <h1 id="workshopsText" class="text-with-image">WORKSHOPS</h1>
+    </div>
+
+
+
+
+    <div id="section2">
+        <div class="gallery-container">
+            <div class="gallery-image active" style="background-image: url('workshopimages/galleryOne.jpg');"></div>
+            <div class="gallery-image" style="background-image: url('workshopimages/galleryTwo.jpeg');"></div>
+            <div class="gallery-image" style="background-image: url('workshopimages/galleryThree.jpg');"></div>
+        </div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h1 id="bookNowText">Book Now</h1>
+            <div class="arrow"></div>
+        </div>
+        
+        <div class="dot-navigation">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">Upcoming Workshops</h2>
+        <div class="workshop-carousel">
+            <div class="workshop-container" id="workshopContainer"></div>
+            <button class="nav-btn prev-btn" id="prevBtn">&lt;</button>
+            <button class="nav-btn next-btn" id="nextBtn">&gt;</button>
+        </div>
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+// Navbar scripts
+       let lastScrollTop = 0;
+        const navbar = document.getElementById('mainNavbar');
+        const showOffset = 50; 
+        function handleScroll() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.classList.add('fade-out');
+            } else if (scrollTop < lastScrollTop && scrollTop <= showOffset) {
+                navbar.classList.remove('fade-out');
+            }   
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+
+
+// hallow text movemnt 
+       const workshopsText = document.getElementById('workshopsText');
+        const section1 = document.getElementById('section1');
+
+        function updateTextPosition() {
+            const scrollPercentage = window.pageYOffset / (section1.offsetHeight - window.innerHeight);
+            let movePercentage; 
+            if (scrollPercentage < 0.4) {
+                movePercentage = -100 + (scrollPercentage / 0.4) * 100;
+            } else if (scrollPercentage > 0.6) {
+                movePercentage = ((scrollPercentage - 0.6) / 0.4) * 100;
+            } else {
+                movePercentage = 0;
+            }
+            workshopsText.style.transform = `translateY(-50%) translateX(${movePercentage}%)`;
+        }
+        window.addEventListener('scroll', updateTextPosition, { passive: true });
+        window.addEventListener('resize', updateTextPosition, { passive: true });
+       updateTextPosition();
+
+
+       //Book Now text
+       const galleryImages = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.dot');
+        let currentImageIndex = 0;
+        let slideInterval;
+
+        function showImage(index) {
+            galleryImages[currentImageIndex].classList.remove('active');
+            dots[currentImageIndex].classList.remove('active');
+            currentImageIndex = index;
+            galleryImages[currentImageIndex].classList.add('active');
+            dots[currentImageIndex].classList.add('active');
+        }
+
+        function nextImage() {
+            let nextIndex = (currentImageIndex + 1) % galleryImages.length;
+            showImage(nextIndex);
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(nextImage, 5000);
+        }
+
+        function stopSlideshow() {
+            clearInterval(slideInterval);
+        }
+
+        // Initialize slideshow
+        startSlideshow();
+
+        // Update dot navigation when clicked
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopSlideshow();
+                showImage(index);
+                startSlideshow();
+            });
+        });
+
+        // Optional: Pause slideshow when hovering over the gallery
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', stopSlideshow);
+        galleryContainer.addEventListener('mouseleave', startSlideshow);
+
+
+       
+       const section2 = document.getElementById('section2');
+        const movingBg = section2.querySelector('.moving-bg');
+        const bookNowText = document.getElementById('bookNowText');
+
+        function updateSection2() {
+            const scrollPosition = window.pageYOffset;
+            const sectionTop = section2.offsetTop;
+            const sectionHeight = section2.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight - viewportHeight) {
+                const progress = (scrollPosition - sectionTop) / (sectionHeight - viewportHeight);
+                const movePercentage = progress * 50;
+                movingBg.style.transform = `translateY(-${movePercentage}%)`;
+                
+                // Move the "Book Now" text downward
+                const textTopPosition = 50 + (progress * 50); // Start at 50% (middle) and move to 100% (bottom)
+                bookNowText.style.top = `${textTopPosition}%`;
+            }
+        }
+
+        window.addEventListener('scroll', updateSection2);
+        window.addEventListener('resize', updateSection2);
+
+        // Initial call to set correct position
+        updateSection2();
+
+
+// Gallery
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//workshops
+const workshops = [
+            {
+                title: "Electricity Basics Extravaganza",
+                date: "July 15, 2024",
+                description: "Join us for a shocking experience as we delve into the world of electricity with lighting, circuits, and steel wool!",
+                imageUrl: "workshopimages/electricity.jpg"
+            },
+            {
+                title: "Chemical Magic Marvels",
+                date: "August 10, 2024",
+                description: "Prepare to be spellbound by our enchanting chemistry experiments that will leave you in awe!",
+                imageUrl: "workshopimages/chemistry.jpg"
+            },
+            {
+                title: "Medicine Mysteries Unveiled",
+                date: "September 5, 2024",
+                description: "Unravel the secrets of medicine with us as we embark on a journey of discovery and healing!",
+                imageUrl: "workshopimages/medicine.jpg"
+            },
+            {
+                title: "Physics Phenomena Fiesta",
+                date: "October 1, 2024",
+                description: "Experience the thrill of physics like never before with mind-bending experiments and mind-blowing demonstrations!",
+                imageUrl: "workshopimages/physics.jpg"
+            },
+            {
+                title: "Biology Bonanza",
+                date: "November 12, 2024",
+                description: "Explore the wonders of life in this hands-on workshop filled with fascinating biological experiments!",
+                imageUrl: "workshopimages/biology.jpg"
+            },
+            {
+                title: "Astronomy Adventure",
+                date: "December 5, 2024",
+                description: "Reach for the stars in this cosmic journey through the universe, featuring telescope observations and planetary models!",
+                imageUrl: "workshopimages/astronomy.jpg"
+            }
+        ];
+
+        let currentIndex = 0;
+        let cardsPerView = 4;
+
+        function createWorkshopCard(workshop) {
+            return `
+                <div class="workshop-card">
+                    <div class="card-content">
+                        <img src="${workshop.imageUrl}" alt="${workshop.title}">
+                        <div class="card-body">
+                            <div>
+                                <h3 class="card-title">${workshop.title}</h3>
+                                <p class="card-date">${workshop.date}</p>
+                                <p class="card-description">${workshop.description}</p>
+                            </div>
+                            <button class="btn-register">Register</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderWorkshops() {
+            const container = document.getElementById('workshopContainer');
+            container.innerHTML = workshops.map(createWorkshopCard).join('');
+            updateCardPositions();
+        }
+
+        function updateCardPositions() {
+            const container = document.getElementById('workshopContainer');
+            container.style.transform = `translateX(-${currentIndex * (100 / cardsPerView)}%)`;
+        }
+
+        function updateCardsPerView() {
+            if (window.innerWidth < 768) {
+                cardsPerView = 1;
+            } else if (window.innerWidth < 992) {
+                cardsPerView = 2;
+            } else if (window.innerWidth < 1200) {
+                cardsPerView = 3;
+            } else {
+                cardsPerView = 4;
+            }
+            updateCardPositions();
+        }
+
+        function nextWorkshops() {
+            if (currentIndex + cardsPerView < workshops.length) {
+                currentIndex++;
+                updateCardPositions();
+            }
+        }
+
+        function prevWorkshops() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCardPositions();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWorkshops();
+            updateCardsPerView();
+
+            document.getElementById('prevBtn').addEventListener('click', prevWorkshops);
+            document.getElementById('nextBtn').addEventListener('click', nextWorkshops);
+            window.addEventListener('resize', updateCardsPerView);
+        });
+
+           </script>
+</body>
+</html>
